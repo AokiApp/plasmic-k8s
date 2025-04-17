@@ -25,6 +25,9 @@ RUN <<EOF
   done
 EOF
 
+WORKDIR /app/plasmic/platform/wab
+RUN yarn run build
+
 FROM node:22-slim
 
 RUN apt update -y && apt install curl -y --no-install-recommends \

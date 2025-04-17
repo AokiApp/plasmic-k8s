@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      imagePullSecrets:
+        - name: github-registry-secret
+      containers:
+        - name: backend
+          image: ghcr.io/aokiapp/plasmic-k8s/base:latest
+          ports:
+            - containerPort: 3004
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 3004
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          envFrom:
+            - configMapRef:
+                name: backend-config
+            - secretRef:
+                name: backend-secrets
+
+---
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: backend-secrets
+#   labels:
+#     app: backend
+# data:
+#   WAB_DBPASSWORD: "AQAB"
+#   SESSION_SECRET: "AQAB"
+#   MAIL_CONFIG: "AQAB"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+  labels:
+    app: backend
+data:
+  DATABASE_URI: "postgresql://plasmic:password@pg-cluster-rw.pg-cluster.svc.cluster.local:5432/wab"
+  NODE_ENV: "production"
+  BACKEND_PORT: "3004"
+  CODEGEN_HOST: "https://codegen.your-plasmic-domain.com"
+  REACT_APP_DEFAULT_HOST_URL: "https://host.your-plasmic-domain.com/static/host.html"
+  REACT_APP_PUBLIC_URL: "https://your-plasmic-domain.com"
+  REACT_APP_CDN_URL: "https://cdn.your-plasmic-domain.com"
+  INTEGRATIONS_HOST: "https://your-plasmic-domain.com"
+  ENABLED_GET_EMAIL_VERIFICATION_TOKEN: "true"
+  DISABLE_BWRAP: "1"
+  ADMIN_EMAILS: '["me@aoki.app"]'
+  HOST: "https://your-plasmic-domain.com"
+  WAB_DBPASSWORD: "password"
+  SESSION_SECRET: "new_secret_value"
+  MAIL_CONFIG: "{}"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3004
+  type: ClusterIP

@@ -1,4 +1,5 @@
 namespace: plasmic
 resources:
   - ../base
+  - ingress.yaml
 # Add any production-specific patches or configurations here.

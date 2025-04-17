@@ -37,3 +37,18 @@ RUN <<EOF
   
   yarn install
 EOF
+
+WORKDIR /home/user/codes/plasmic/platform/wab
+RUN yarn install
+RUN yarn run build-css
+RUN make
+
+WORKDIR /home/user/codes/plasmic/platform
+RUN <<EOF
+  for i in "./canvas-packages/" "./host-test/" "./integration-tests/" "./live-frame/" "./loader-bundle-env/" "./loader-html-hydrate/" "./loader-tests/" "./react-renderer/" "./react-web-bundle/" "./sub/"; do
+    cd $i
+    yarn install
+    yarn run build
+    cd ..
+  done
+EOF
