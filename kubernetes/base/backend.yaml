@@ -84,3 +84,11 @@ spec:
       port: 80
       targetPort: 3004
   type: ClusterIP
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: backend-secret
+type: Opaque
+stringData: {}

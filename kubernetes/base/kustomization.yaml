@@ -2,3 +2,5 @@ resources:
   - namespace.yaml
   - database.yaml
   - backend.yaml
+  - ingress.yaml
+  - shared.yaml
