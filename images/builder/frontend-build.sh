@@ -6,4 +6,4 @@
 cd /app/plasmic/platform/wab/
 yarn rsbuild build
 
-cp -r /app/plasmic/platform/wab/build /app/build
+cp -r /app/plasmic/platform/wab/build /app

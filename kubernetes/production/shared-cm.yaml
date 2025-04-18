@@ -4,8 +4,8 @@ metadata:
   name: shared-cm
 data:
   NODE_ENV: "production"
-  REACT_APP_DEFAULT_HOST_URL: "https://host.your-plasmic-domain.com/static/host.html"
-  REACT_APP_PUBLIC_URL: "https://your-plasmic-domain.com"
-  CODEGEN_HOST: "https://codegen.your-plasmic-domain.com"
-  CODEGEN_ORIGIN_HOST: "https://codegen-origin.your-plasmic-domain.com"
-  INTEGRATIONS_HOST: "https://your-plasmic-domain.com"
+  REACT_APP_DEFAULT_HOST_URL: "https://plasmic.ouchiserver.aokiapp.com/static/host.html"
+  REACT_APP_PUBLIC_URL: "https://plasmic.ouchiserver.aokiapp.com"
+  CODEGEN_HOST: "https://plasmic-codegen.ouchiserver.aokiapp.com"
+  CODEGEN_ORIGIN_HOST: "https://plasmic-codegen.ouchiserver.aokiapp.com"
+  INTEGRATIONS_HOST: ""

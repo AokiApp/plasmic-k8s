@@ -4,3 +4,4 @@ resources:
   - backend.yaml
   - ingress.yaml
   - shared.yaml
+  - frontend.yaml
