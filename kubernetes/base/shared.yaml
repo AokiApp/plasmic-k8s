@@ -6,9 +6,12 @@ metadata:
     description: "Environment variables used in wab/shared"
 
 data:
-  # Plasmic Host URL, used within devflags
-  REACT_APP_DEFAULT_HOST_URL: "<default-host-url>"
-  REACT_APP_PUBLIC_URL: "<public-url>"
+  NODE_ENV: "development"
+  REACT_APP_DEFAULT_HOST_URL: "https://host.plasmicdev.com/static/host.html"
+  REACT_APP_PUBLIC_URL: "http://localhost:3003"
+  CODEGEN_HOST: "https://codegen.plasmic.app"
+  CODEGEN_ORIGIN_HOST: "http://codegen-origin.plasmic.app"
+  INTEGRATIONS_HOST: "https://integrations.plasmic.app"
 
 ---
 apiVersion: v1

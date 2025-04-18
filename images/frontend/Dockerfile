@@ -1,4 +1,6 @@
-FROM lighttpd:1.4-alpine
+FROM alpine:latest
+# Install lighttpd and ca-certificates
+RUN apk add --no-cache lighttpd ca-certificates
 
 # ボリュームマウントされる静的ファイルのディレクトリ
 VOLUME /app/build

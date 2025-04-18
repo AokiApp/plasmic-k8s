@@ -6,9 +6,6 @@ metadata:
     app: frontend
   annotations:
     description: "Frontend build parameter, used in wab/client"
-data:
-  PUBLIC_URL: "https://your-frontend-domain.com"
-  API_BASE_URL: "https://api.your-frontend-domain.com"
 ---
 apiVersion: apps/v1
 kind: Deployment

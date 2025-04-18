@@ -44,20 +44,33 @@ metadata:
     app: backend
 data:
   DATABASE_URI: "postgresql://plasmic:password@pg-cluster-rw.pg-cluster.svc.cluster.local:5432/wab"
-  NODE_ENV: "production"
-  BACKEND_PORT: "3004"
-  CODEGEN_HOST: "https://codegen.your-plasmic-domain.com"
-  REACT_APP_DEFAULT_HOST_URL: "https://host.your-plasmic-domain.com/static/host.html"
-  REACT_APP_PUBLIC_URL: "https://your-plasmic-domain.com"
-  REACT_APP_CDN_URL: "https://cdn.your-plasmic-domain.com"
-  INTEGRATIONS_HOST: "https://your-plasmic-domain.com"
-  ENABLED_GET_EMAIL_VERIFICATION_TOKEN: "true"
-  DISABLE_BWRAP: "1"
   ADMIN_EMAILS: '["me@aoki.app"]'
-  HOST: "https://your-plasmic-domain.com"
   WAB_DBPASSWORD: "password"
   SESSION_SECRET: "new_secret_value"
   MAIL_CONFIG: "{}"
+  HOST: "localhost"
+  SENTRY_DSN: ""
+  MAIL_FROM: ""
+  MAIL_BCC: ""
+  CLICKHOUSE_USER: "admin"
+  CLICKHOUSE_PASS: ""
+  CLICKHOUSE_DB: "posthog"
+  SOCKET_HOST: ""
+  SOCKET_PORT: "3005"
+  BACKEND_PORT: "3004"
+  PG_SIMPLE_QUERY_MODE: "false"
+  SITE_ASSETS_BUCKET: ""
+  SITE_ASSETS_BASE_URL: ""
+  S3_ENDPOINT: ""
+  LOADER_ASSETS_BUCKET: "plasmic-loader-assets-dev"
+  AMPLITUDE_API_KEY: ""
+  DEV_BUNDLE_MIGRATION: ""
+  ENABLED_GET_EMAIL_VERIFICATION_TOKEN: ""
+  DISABLE_BWRAP: "0"
+  BWRAP_ARGS: ""
+  TUTORIAL_DB_HOST: "localhost"
+  TUTORIAL_DB_SUPER_PASSSWORD: ""
+
 ---
 apiVersion: v1
 kind: Service

@@ -1,5 +1,9 @@
 FROM node:22-slim
 
+RUN apt update -y && \
+    apt install ca-certificates bubblewrap -y --no-install-recommends && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/* 
 RUN mkdir /app && chown -R node:node /app
 WORKDIR /app
 
