@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-build-config
+  labels:
+    app: frontend
+# build時に必要な環境変数をここに追加
+# 例:
+data:
+  PUBLIC_URL: "https://your-frontend-domain.com"
+  API_BASE_URL: "https://api.your-frontend-domain.com"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      imagePullSecrets:
+        - name: github-registry-secret
+      containers:
+        - name: frontend
+          image: ghcr.io/aokiapp/plasmic-k8s/base:latest
+          command: ["npx"]
+          args: ["http-server", "/app/build", "-p", "3000"]
+          ports:
+            - containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: ClusterIP

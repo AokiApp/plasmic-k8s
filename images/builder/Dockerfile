@@ -1,4 +1,4 @@
-FROM node:22-slim AS builder
+FROM ghcr.io/aokiapp/plasmic-k8s/base:latest AS builder
 
 # Install dependencies
 RUN apt update -y && apt install git curl rsync iproute2 ca-certificates make -y --no-install-recommends \
