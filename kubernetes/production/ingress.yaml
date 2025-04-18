@@ -10,14 +10,3 @@ spec:
     - hosts:
         - "*.ouchiserver.aokiapp.com"
       secretName: service-tls
-  rules:
-    - host: plasmic.ouchiserver.aokiapp.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: backend
-                port:
-                  number: 80
