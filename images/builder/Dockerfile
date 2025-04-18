@@ -1,34 +1,45 @@
 FROM node:22-slim AS builder
 
-# Install dependencies
-RUN apt update -y && apt install git curl rsync iproute2 ca-certificates make -y --no-install-recommends \
-  && apt clean \
-  && rm -rf /var/lib/apt/lists/*
-
 ENV NODE_ENV=development
 
-RUN mkdir /app && chown -R node:node /app
+USER root
+
+# Install dependencies, clone repository, and build using a single heredoc
+RUN bash -eux <<'EOF'
+  apt update -y
+  apt install git ca-certificates make -y --no-install-recommends
+  apt clean
+  rm -rf /var/lib/apt/lists/*
+
+  mkdir -p /app && chown -R node:node /app
+EOF
+
+USER node
 WORKDIR /app
-RUN git clone https://github.com/plasmicapp/plasmic.git plasmic --depth 1
 
-WORKDIR /app/plasmic
-RUN git submodule update --init --recursive
-RUN yarn
+RUN bash -eux <<'EOF'
+  cd /app
+  git clone --depth 1 --filter=blob:none --sparse https://github.com/plasmicapp/plasmic.git plasmic
+  cd /app/plasmic
+  git sparse-checkout set platform packages
+  yarn
 
-WORKDIR /app/plasmic/platform/wab
-RUN yarn install
-RUN yarn run build-css
-RUN make
+  cd /app/plasmic/platform/wab
+  yarn install
+  yarn run build-css
+  make
 
-WORKDIR /app/plasmic/platform
-RUN <<EOF
-  for i in ./*; do
+  cd /app/plasmic/platform
+  for i in "./canvas-packages/" "./live-frame/" "./loader-html-hydrate/" "./react-web-bundle/" "./sub/"; do
     cd $i
     yarn install
     yarn run build
     cd ..
   done
+
+  rm -rf /app/plasmic/platform/**/node_modules/.cache ~/.cache ~/.npm ~/.yarn ~/.yarnrc.yml ~/.yarnrc.yml.lock
 EOF
 
 COPY --chown=node:node --chmod=755 ./frontend-build.sh /app/frontend-build.sh
 
+ENTRYPOINT ["bash"]
