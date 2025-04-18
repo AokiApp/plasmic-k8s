@@ -2,4 +2,8 @@ namespace: plasmic
 resources:
   - ../base
   - ingress.yaml
+  - shared-cm.yaml
+  - shared-secret.yaml
+  - backend-cm.yaml
+  - backend-secret.yaml
 # Add any production-specific patches or configurations here.

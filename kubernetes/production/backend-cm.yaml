@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-cm
+data:
+  DATABASE_URI: "postgresql://plasmic:yourpassword@db-hostname:5432/wab"
+  ADMIN_EMAILS: '["admin@yourdomain.com"]'
+  WAB_DBPASSWORD: "yourpassword"
+  SESSION_SECRET: "your-production-session-secret"
+  MAIL_CONFIG: '{"host":"smtp.yourdomain.com","port":587,"secure":false,"auth":{"user":"smtp-user","pass":"smtp-pass"}}'
+  HOST: "your-plasmic-domain.com"
+  SENTRY_DSN: "your-sentry-dsn"
+  MAIL_FROM: "noreply@yourdomain.com"
+  MAIL_BCC: ""
