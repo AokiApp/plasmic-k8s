@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shared-cm
+  annotations:
+    description: "Environment variables used in wab/shared"
+
+data:
+  # Plasmic Host URL, used within devflags
+  REACT_APP_DEFAULT_HOST_URL: "<default-host-url>"
+  REACT_APP_PUBLIC_URL: "<public-url>"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: shared-secret
+  annotations:
+    description: "All secret environment variables are here"
+type: Opaque

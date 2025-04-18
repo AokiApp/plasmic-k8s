@@ -18,7 +18,7 @@ spec:
         - name: github-registry-secret
       containers:
         - name: backend
-          image: ghcr.io/aokiapp/plasmic-k8s/base:latest
+          image: ghcr.io/aokiapp/plasmic-k8s/backend:latest
           ports:
             - containerPort: 3004
           livenessProbe:
@@ -29,26 +29,17 @@ spec:
             periodSeconds: 10
           envFrom:
             - configMapRef:
-                name: backend-config
+                name: backend-cm
             - secretRef:
-                name: backend-secrets
+                name: shared-secret
+            - configMapRef:
+                name: shared-cm
 
----
-# apiVersion: v1
-# kind: Secret
-# metadata:
-#   name: backend-secrets
-#   labels:
-#     app: backend
-# data:
-#   WAB_DBPASSWORD: "AQAB"
-#   SESSION_SECRET: "AQAB"
-#   MAIL_CONFIG: "AQAB"
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: backend-config
+  name: backend-cm
   labels:
     app: backend
 data:

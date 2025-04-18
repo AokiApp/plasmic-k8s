@@ -1,4 +1,4 @@
-FROM ghcr.io/aokiapp/plasmic-k8s/base:latest AS builder
+FROM node:22-slim AS builder
 
 # Install dependencies
 RUN apt update -y && apt install git curl rsync iproute2 ca-certificates make -y --no-install-recommends \
@@ -30,26 +30,5 @@ RUN <<EOF
   done
 EOF
 
-
-FROM node:22-slim
-
-RUN apt update -y && apt install curl -y --no-install-recommends \
-  && apt clean \
-  && rm -rf /var/lib/apt/lists/*
-
-RUN mkdir /app && chown -R node:node /app
-WORKDIR /app
-
-ENV NODE_ENV=production
-
-COPY --from=builder --chown=node:node /app/plasmic/platform/wab /app/
-
-# make fake git command binary script to trick plasmic into thinking it's in a git repo
-RUN touch /usr/bin/git \
-  && echo '#!/bin/bash' > /usr/bin/git \
-  && echo 'echo "00000000"' >> /usr/bin/git \
-  && chmod +x /usr/bin/git
-
-USER node
-CMD ["bash", "tools/run.bash", "src/wab/server/main.ts"]
+COPY --chown=node:node --chmod=755 ./frontend-build.sh /app/frontend-build.sh
 
