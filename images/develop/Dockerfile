@@ -17,7 +17,7 @@ USER user
 WORKDIR /app
 
 # Clone only necessary parts of the repository
-RUN git clone --depth 1 --filter=blob:none --sparse https://github.com/plasmicapp/plasmic.git plasmic \
+RUN git clone --depth 1 --filter=blob:none --sparse https://github.com/AokiApp/plasmic-selfhost.git plasmic \
     && cd plasmic \
     && git sparse-checkout set platform packages
 

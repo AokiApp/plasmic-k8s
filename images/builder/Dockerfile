@@ -19,7 +19,7 @@ WORKDIR /app
 
 RUN bash -eux <<'EOF'
   cd /app
-  git clone --depth 1 --filter=blob:none --sparse https://github.com/plasmicapp/plasmic.git plasmic
+  git clone --depth 1 --filter=blob:none --sparse https://github.com/AokiApp/plasmic-selfhost.git plasmic
   cd /app/plasmic
   git sparse-checkout set platform packages
   yarn
