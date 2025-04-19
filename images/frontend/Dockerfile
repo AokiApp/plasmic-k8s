@@ -22,7 +22,7 @@ COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
 # builderからbuild成果物をコピー
-COPY --from=builder /app/plasmic/platform/wab/build /app
+COPY --from=builder /app/plasmic/platform/wab/build /app/build
 
 WORKDIR /app/build
 RUN mkdir -p /var/cache/lighttpd/compress/

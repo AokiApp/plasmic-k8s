@@ -18,4 +18,4 @@ for file in $(find /app -type f); do
 done
 
 # Start lighttpd in foreground mode
-exec lighttpd -D -f /etc/lighttpd/lighttpd.conf
+lighttpd -D -f /etc/lighttpd/lighttpd.conf
