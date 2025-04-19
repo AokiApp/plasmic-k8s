@@ -28,48 +28,22 @@ spec:
             initialDelaySeconds: 3
             periodSeconds: 10
           envFrom:
-            - configMapRef:
-                name: backend-cm
             - secretRef:
                 name: shared-secret
             - configMapRef:
                 name: shared-cm
-
+          env:
+            - name: NFIGURE_JSON
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-config
+                  key: config.json
+            - name: NFIGURE_PATCH_JSON
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: secret.json
 ---
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: backend-cm
-  labels:
-    app: backend
-data:
-  DATABASE_URI: "postgresql://plasmic:password@pg-cluster-rw.pg-cluster.svc.cluster.local:5432/wab"
-  ADMIN_EMAILS: '["me@aoki.app"]'
-  WAB_DBPASSWORD: "password"
-  SESSION_SECRET: "new_secret_value"
-  MAIL_CONFIG: "{}"
-  HOST: "localhost"
-  SENTRY_DSN: ""
-  MAIL_FROM: ""
-  MAIL_BCC: ""
-  CLICKHOUSE_USER: "admin"
-  CLICKHOUSE_PASS: ""
-  CLICKHOUSE_DB: "posthog"
-  SOCKET_HOST: ""
-  SOCKET_PORT: "3005"
-  BACKEND_PORT: "3004"
-  PG_SIMPLE_QUERY_MODE: "false"
-  SITE_ASSETS_BUCKET: ""
-  SITE_ASSETS_BASE_URL: ""
-  S3_ENDPOINT: ""
-  LOADER_ASSETS_BUCKET: "plasmic-loader-assets-dev"
-  AMPLITUDE_API_KEY: ""
-  DEV_BUNDLE_MIGRATION: ""
-  ENABLED_GET_EMAIL_VERIFICATION_TOKEN: ""
-  DISABLE_BWRAP: "1"
-  BWRAP_ARGS: ""
-  TUTORIAL_DB_HOST: "localhost"
-  TUTORIAL_DB_SUPER_PASSSWORD: ""
 
 ---
 apiVersion: v1
@@ -86,9 +60,4 @@ spec:
   type: ClusterIP
 
 ---
-apiVersion: v1
-kind: Secret
-metadata:
-  name: backend-secret
-type: Opaque
-stringData: {}
+

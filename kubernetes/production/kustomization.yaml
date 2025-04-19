@@ -5,5 +5,14 @@ patches:
   - path: ingress.yaml
   - path: shared-cm.yaml
   - path: shared-secret.yaml
-  - path: backend-cm.yaml
-  - path: backend-secret.yaml
+
+configMapGenerator:
+  - name: backend-config
+    files:
+      - config.json
+
+secretGenerator:
+  - name: backend-secret
+    files:
+      - secret.json
+    type: Opaque

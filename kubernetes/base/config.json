@@ -1,0 +1,20 @@
+{
+  "nodeEnv": "production",
+  "clickhouse": {
+    "host": "http://clickhouse-db.plasmic.app",
+    "username": "admin",
+    "password": "",
+    "database": "posthog"
+  },
+  "siteAssetsBucket": "plasmic-assets",
+  "backendPort": 3004,
+  "loaderAssetsBucket": "plasmic-loader-assets-dev",
+  "socketPort": 3020,
+  "wabDbName": "wab",
+  "disableBwrap": false,
+  "adminEmails": [
+    "me@aoki.app"
+  ],
+  "mailFrom": "me <me@aoki.app>",
+  "mailUserOps": "ops@example.com"
+}
