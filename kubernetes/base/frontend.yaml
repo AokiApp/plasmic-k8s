@@ -25,38 +25,15 @@ spec:
     spec:
       imagePullSecrets:
         - name: github-registry-secret
-      initContainers:
-        - name: frontend-builder
-          image: ghcr.io/aokiapp/plasmic-k8s/builder:latest
-          command: ["/app/frontend-build.sh"]
-          envFrom:
-            - configMapRef:
-                name: frontend-cm
-          # mount volumes as /app/build for write to send build output
-          volumeMounts:
-            - name: frontend-build
-              mountPath: /app/build
-          # resource limits
-          resources:
-            limits:
-              cpu: "1"
-              memory: "512Mi"
-            requests:
-              cpu: "0.5"
-              memory: "256Mi"
+
       containers:
         - name: frontend
           image: ghcr.io/aokiapp/plasmic-k8s/frontend:latest
+          envFrom:
+            - configMapRef:
+                name: frontend-cm
           ports:
             - containerPort: 80
-          # mount volumes as /app/build for read to get build output
-          volumeMounts:
-            - name: frontend-build
-              mountPath: /app/build
-      # define transient volume to share build output between init and main container
-      volumes:
-        - name: frontend-build
-          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service

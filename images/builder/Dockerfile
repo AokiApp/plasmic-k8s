@@ -40,6 +40,5 @@ RUN bash -eux <<'EOF'
   rm -rf /app/plasmic/platform/**/node_modules/.cache ~/.cache ~/.npm ~/.yarn ~/.yarnrc.yml ~/.yarnrc.yml.lock /tmp/* /usr/local/share/.cache/yarn
 EOF
 
-COPY --chown=node:node --chmod=755 ./frontend-build.sh /app/frontend-build.sh
 
 ENTRYPOINT ["bash"]
