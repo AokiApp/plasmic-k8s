@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-cm
+data:
+  DATABASE_URI: "postgresql://plasmic:password@pg-cluster-rw.pg-cluster.svc.cluster.local:5432/wab"
+  ADMIN_EMAILS: '["me@aoki.app"]'
+  WAB_DBPASSWORD: "password"
+  SESSION_SECRET: "new_secret_value"
+  MAIL_CONFIG: "{}"
+  HOST: "plasmic.ouchiserver.aokiapp.com"
+  SENTRY_DSN: ""
+  MAIL_FROM: ""
+  MAIL_BCC: ""
+  CLICKHOUSE_USER: ""
+  CLICKHOUSE_PASS: ""
+  CLICKHOUSE_DB: ""
+  SOCKET_HOST: ""
+  SOCKET_PORT: ""
+  BACKEND_PORT: "3004"
+  PG_SIMPLE_QUERY_MODE: "false"
+  SITE_ASSETS_BUCKET: ""
+  SITE_ASSETS_BASE_URL: ""
+  S3_ENDPOINT: ""
+  LOADER_ASSETS_BUCKET: "plasmic-loader-assets-dev"
+  AMPLITUDE_API_KEY: ""
+  DEV_BUNDLE_MIGRATION: ""
+  ENABLED_GET_EMAIL_VERIFICATION_TOKEN: ""
+  DISABLE_BWRAP: "0"
+  BWRAP_ARGS: ""
+  TUTORIAL_DB_HOST: "localhost"
+  TUTORIAL_DB_SUPER_PASSSWORD: ""

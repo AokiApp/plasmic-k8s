@@ -1,0 +1,4 @@
+namespace: plasmic
+resources:
+  - ../base
+# Add any production-specific patches or configurations here.

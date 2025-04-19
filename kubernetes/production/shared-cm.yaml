@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shared-cm
+data:
+  NODE_ENV: "production"
+  REACT_APP_DEFAULT_HOST_URL: "https://plasmic.ouchiserver.aokiapp.com/static/host.html"
+  REACT_APP_PUBLIC_URL: "https://plasmic.ouchiserver.aokiapp.com"
+  CODEGEN_HOST: "https://plasmic-codegen.ouchiserver.aokiapp.com"
+  CODEGEN_ORIGIN_HOST: "https://plasmic-codegen.ouchiserver.aokiapp.com"
+  INTEGRATIONS_HOST: ""
