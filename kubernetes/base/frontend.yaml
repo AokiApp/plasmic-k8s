@@ -36,6 +36,14 @@ spec:
           volumeMounts:
             - name: frontend-build
               mountPath: /app/build
+          # resource limits
+          resources:
+            limits:
+              cpu: "1"
+              memory: "512Mi"
+            requests:
+              cpu: "0.5"
+              memory: "256Mi"
       containers:
         - name: frontend
           image: ghcr.io/aokiapp/plasmic-k8s/frontend:latest
