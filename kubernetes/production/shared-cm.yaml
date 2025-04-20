@@ -9,3 +9,4 @@ data:
   CODEGEN_HOST: "https://plasmic-codegen.ouchiserver.aokiapp.com"
   CODEGEN_ORIGIN_HOST: "https://plasmic-codegen.ouchiserver.aokiapp.com"
   INTEGRATIONS_HOST: ""
+  PUBLIC_URL: "https://plasmic.ouchiserver.aokiapp.com"

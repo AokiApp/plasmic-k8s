@@ -6,6 +6,7 @@ RUN cd /app/plasmic/platform/wab && \
     NODE_ENV="production" \
     REACT_APP_DEFAULT_HOST_URL="https://dummy-host-2a1b3c.example.com/static/host.html" \
     REACT_APP_PUBLIC_URL="https://dummy-public-9d7e6f.example.com" \
+    PUBLIC_URL="https://dummy-public-9d7e6f.example.com" \
     CODEGEN_HOST="https://dummy-codegen-5e4d3c.example.com" \
     CODEGEN_ORIGIN_HOST="https://dummy-codegen-origin-8a7b6c.example.com" \
     INTEGRATIONS_HOST="https://dummy-integrations-1a2b3c.example.com" \

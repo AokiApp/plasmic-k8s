@@ -8,11 +8,6 @@ patches:
 
 configMapGenerator:
   - name: backend-config
+    behavior: replace
     files:
       - config.json
-
-secretGenerator:
-  - name: backend-secret
-    files:
-      - secret.json
-    type: Opaque

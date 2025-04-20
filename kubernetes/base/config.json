@@ -15,6 +15,9 @@
   "adminEmails": [
     "me@aoki.app"
   ],
-  "mailFrom": "me <me@aoki.app>",
-  "mailUserOps": "ops@example.com"
+  "mail": {
+    "from": "me <me@aoki.app>",
+    "userOps": "ops@example.com"
+  },
+  "databaseUri": "postgresql://plasmic:password@pg-cluster-rw.pg-cluster.svc.cluster.local:5432/wab"
 }

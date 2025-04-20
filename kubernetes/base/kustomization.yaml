@@ -10,9 +10,3 @@ configMapGenerator:
   - name: backend-config
     files:
       - config.json
-
-secretGenerator:
-  - name: backend-secret
-    files:
-      - secret.json
-    type: Opaque
