@@ -21,3 +21,13 @@ spec:
                 name: frontend
                 port:
                   number: 80
+    - host: plasmic-host.ouchiserver.aokiapp.com
+      http: # plasmic host needs a different host, but it can be the same content
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 80
