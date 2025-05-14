@@ -1,6 +1,6 @@
 FROM node:22-slim AS builder
 
-ENV NODE_ENV=development
+ENV NODE_ENV=production
 
 USER root
 
@@ -22,17 +22,17 @@ RUN bash -eux <<'EOF'
   git clone --depth 1 --filter=blob:none --sparse https://github.com/AokiApp/plasmic-selfhost.git plasmic
   cd /app/plasmic
   git sparse-checkout set platform packages
-  yarn
+  yarn install --production=false
 
   cd /app/plasmic/platform/wab
-  yarn install
+  yarn install --production=false
   yarn run build-css
   make
 
   cd /app/plasmic/platform
   for i in "./canvas-packages/" "./live-frame/" "./loader-html-hydrate/" "./react-web-bundle/" "./sub/"; do
     cd $i
-    yarn install
+    yarn install --production=false
     yarn run build
     cd ..
   done
