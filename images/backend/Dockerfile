@@ -11,7 +11,7 @@ ENV NODE_ENV=production
 
 COPY --from=ghcr.io/aokiapp/plasmic-k8s/builder:latest --chown=node:node /app/plasmic/platform/wab /app/
 COPY create-system-acct.ts /app/src/wab/server/db/create-system-acct.ts
-COPY bundlez.json /app/src/wab/server/db/bundlez.json
+COPY bundlez.json /app/bundlez.json
 
 USER node
 CMD ["bash", "tools/run.bash", "src/wab/server/main.ts"]
