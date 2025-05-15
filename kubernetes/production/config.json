@@ -1,10 +1,10 @@
 {
   "nodeEnv": "production",
   "clickhouse": {
-    "host": "http://clickhouse-db.plasmic.app",
-    "username": "admin",
+    "host": "http://blackhole:9999",
+    "username": "notexist",
     "password": "",
-    "database": "posthog"
+    "database": "notexist"
   },
   "siteAssetsBucket": "plasmic-assets",
   "backendPort": 3004,
