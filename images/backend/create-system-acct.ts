@@ -2,7 +2,6 @@
  * This script creates a system account for the self-hosted environment.
  */
 import { ensureDbConnection } from "@/wab/server/db/DbCon";
-import { initDb } from "@/wab/server/db/DbInitUtil";
 import { DbMgr, normalActor, SUPER_USER } from "@/wab/server/db/DbMgr";
 import { FeatureTier, User } from "@/wab/server/entities/Entities";
 import { getBundleInfo, PkgMgr } from "@/wab/server/pkg-mgr";
@@ -31,7 +30,6 @@ if (require.main === module) {
 async function main() {
   const con = await ensureDbConnection(appConfig.databaseUri!, "default");
   await con.transaction(async (em) => {
-    await initDb(em);
     await seedInitialData(em);
     console.log("Seeding initial data done");
   });
