@@ -3,7 +3,7 @@
  */
 import { ensureDbConnection } from "@/wab/server/db/DbCon";
 import { initDb } from "@/wab/server/db/DbInitUtil";
-import { DbMgr, SUPER_USER } from "@/wab/server/db/DbMgr";
+import { DbMgr, normalActor, SUPER_USER } from "@/wab/server/db/DbMgr";
 import { FeatureTier, User } from "@/wab/server/entities/Entities";
 import { getBundleInfo, PkgMgr } from "@/wab/server/pkg-mgr";
 import { initializeGlobals } from "@/wab/server/svr-init";
@@ -18,6 +18,9 @@ import {
 import { kebabCase, startCase } from "lodash";
 import { EntityManager } from "typeorm";
 import { appConfig } from "../nfigure-config";
+import { doImportProject } from "../routes/projects";
+import { Bundler } from "@/wab/shared/bundler";
+import { readFileSync } from "node:fs";
 
 initializeGlobals();
 
@@ -47,7 +50,7 @@ async function seedInitialData(em: EntityManager) {
   }
 
   const { user: adminUser } = await createUser(em, {
-    email: "root@localhost",
+    email: "root@aoki.app",
     firstName: "System",
     lastName: "Root",
   });
@@ -151,6 +154,13 @@ async function seedInitialData(em: EntityManager) {
       2
     )
   );
+
+  const dbAsSHUser = new DbMgr(em, normalActor(adminUser.id));
+  const bundles = JSON.parse(readFileSync("./bundlez.json").toString());
+
+  await doImportProject(bundles, dbAsSHUser, new Bundler(), {
+    keepProjectIdsAndNames: true,
+  });
 }
 
 async function createUser(
