@@ -152,6 +152,7 @@ async function seedInitialData(em: EntityManager) {
         sso: true,
         posthog: false,
         enableUiCopilot: true,
+        adminUiEnableDomain: appConfig.adminUiEnableDomain,
       },
       null,
       2

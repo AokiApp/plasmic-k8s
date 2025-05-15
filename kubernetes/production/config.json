@@ -12,10 +12,12 @@
   "socketPort": 3020,
   "wabDbName": "wab",
   "disableBwrap": false,
-  "adminTeamDomain": "aoki.app",
+  "superUserEmails": [
+    "root@aoki.app"
+  ],
+  "adminUiEnableDomain": "aoki.app",
   "mail": {
     "from": "donotreply <DoNotReply@aoki.app>",
     "userOps": "ops@example.com"
-  },
-  "databaseUri": "postgresql://plasmic:password@pg-cluster-rw.pg-cluster.svc.cluster.local:5432/wab"
+  }
 }
