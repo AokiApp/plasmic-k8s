@@ -147,6 +147,11 @@ async function seedInitialData(em: EntityManager) {
             "Customizable components": plexusBundleInfo.projectId,
           },
         },
+        copilotTab: true,
+        copilotClaude: true,
+        sso: true,
+        posthog: false,
+        enableUiCopilot: true,
       },
       null,
       2

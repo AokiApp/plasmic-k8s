@@ -12,9 +12,7 @@
   "socketPort": 3020,
   "wabDbName": "wab",
   "disableBwrap": false,
-  "adminEmails": [
-    "me@aoki.app"
-  ],
+  "adminTeamDomain": "aoki.app",
   "mail": {
     "from": "me <me@aoki.app>",
     "userOps": "ops@example.com"
