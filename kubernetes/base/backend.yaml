@@ -16,6 +16,31 @@ spec:
     spec:
       imagePullSecrets:
         - name: github-registry-secret
+      initContainers:
+        - name: db-init
+          image: ghcr.io/aokiapp/plasmic-k8s/backend:latest
+          command:
+            [
+              "bash",
+              "tools/run.bash",
+              "/app/src/wab/server/db/create-system-acct.ts",
+            ]
+          envFrom:
+            - secretRef:
+                name: shared-secret
+            - configMapRef:
+                name: shared-cm
+          env:
+            - name: NFIGURE_JSON
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-config
+                  key: config.json
+            - name: NFIGURE_PATCH_JSON
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: secret.json
       containers:
         - name: backend
           image: ghcr.io/aokiapp/plasmic-k8s/backend:latest
@@ -43,8 +68,6 @@ spec:
                 secretKeyRef:
                   name: backend-secret
                   key: secret.json
----
-
 ---
 apiVersion: v1
 kind: Service

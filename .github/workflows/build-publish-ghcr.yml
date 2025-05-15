@@ -1,5 +1,12 @@
 name: Push Docker image to GitHub Container Registry
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "images/**"
+      - ".github/workflows/build-publish-ghcr.yml"
 
 jobs:
   push_to_registry:
