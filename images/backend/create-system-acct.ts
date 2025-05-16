@@ -196,7 +196,7 @@ function seedFeatureTiers(em: EntityManager) {
 }
 
 const enterpriseFt: FeatureTier = {
-  name: "Self-hosted Enterprise",
+  name: "Enterprise",
   monthlyBasePrice: null,
   monthlyBaseStripePriceId: null,
   annualBasePrice: null,
