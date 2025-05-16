@@ -13,7 +13,8 @@
   "wabDbName": "wab",
   "disableBwrap": false,
   "superUserEmails": [
-    "root@aoki.app"
+    "root@aoki.app",
+    "me@aoki.app"
   ],
   "adminUiEnableDomain": "aoki.app",
   "mail": {
