@@ -13,7 +13,7 @@ COPY --from=ghcr.io/aokiapp/plasmic-k8s/builder:latest --chown=node:node /app/pl
 
 USER node
 RUN bash -eux <<'EOF'
-  for i in "./*"; do
+  for i in ./*; do
     cd $i
     yarn install --production=false
     yarn run build
