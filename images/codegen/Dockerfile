@@ -16,7 +16,6 @@ RUN bash -eux <<'EOF'
   for i in ./*; do
     cd $i
     yarn install --production=false
-    yarn run build
     cd ..
   done
 EOF
