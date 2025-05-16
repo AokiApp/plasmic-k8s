@@ -22,7 +22,6 @@ RUN bash -eux <<'EOF'
   git clone --depth 1 --filter=blob:none --sparse https://github.com/AokiApp/plasmic-selfhost.git plasmic
   cd /app/plasmic
   git sparse-checkout set platform packages
-  yarn install --production=false
 
   cd /app/plasmic/platform/wab
   yarn install --production=false
