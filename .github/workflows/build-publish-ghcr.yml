@@ -20,6 +20,7 @@ jobs:
           - builder
           - frontend
           - backend
+          - codegen
     permissions:
       packages: write
       contents: read

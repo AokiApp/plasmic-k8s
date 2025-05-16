@@ -8,7 +8,7 @@
   },
   "siteAssetsBucket": "plasmic-assets",
   "backendPort": 3004,
-  "loaderAssetsBucket": "plasmic-loader-assets-dev",
+  "loaderAssetsBucket": "aokiapp-plasmic-loader-assets",
   "socketPort": 3020,
   "wabDbName": "wab",
   "disableBwrap": false,

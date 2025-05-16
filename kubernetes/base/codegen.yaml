@@ -29,9 +29,7 @@ spec:
               done
       containers:
         - name: codegen
-          image: ghcr.io/aokiapp/plasmic-k8s/backend:latest
-          command:
-            ["bash", "tools/run.bash", "/app/src/wab/server/codegen-backend.ts"]
+          image: ghcr.io/aokiapp/plasmic-k8s/codegen:latest
           ports:
             - containerPort: 3004
           livenessProbe:
