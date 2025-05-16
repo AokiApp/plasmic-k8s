@@ -5,6 +5,7 @@ resources:
   - ingress.yaml
   - shared.yaml
   - frontend.yaml
+  - codegen.yaml
 
 configMapGenerator:
   - name: backend-config

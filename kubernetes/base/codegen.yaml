@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: codegen
+  labels:
+    app: codegen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: codegen
+  template:
+    metadata:
+      labels:
+        app: codegen
+    spec:
+      imagePullSecrets:
+        - name: github-registry-secret
+      initContainers:
+        - name: wait-backend
+          image: alpine:3.18
+          command:
+            - /bin/sh
+            - -c
+            - |
+              while ! nc -z backend 80; do
+                echo "Waiting for backend ingress to be ready..."
+                sleep 1
+              done
+      containers:
+        - name: codegen
+          image: ghcr.io/aokiapp/plasmic-k8s/backend:latest
+          command:
+            ["bash", "tools/run.bash", "/app/src/wab/server/codegen-backend.ts"]
+          ports:
+            - containerPort: 3004
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 3004
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          envFrom:
+            - secretRef:
+                name: shared-secret
+            - configMapRef:
+                name: shared-cm
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: AWS_REGION
+            - name: NFIGURE_JSON
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-config
+                  key: config.json
+            - name: NFIGURE_PATCH_JSON
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: secret.json
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: codegen
+spec:
+  selector:
+    app: codegen
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3004
+  type: ClusterIP
+
+---
+

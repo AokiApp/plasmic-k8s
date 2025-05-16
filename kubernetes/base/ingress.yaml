@@ -40,3 +40,13 @@ spec:
                 name: frontend
                 port:
                   number: 80
+    - host: plasmic-codegen.ouchiserver.aokiapp.com
+      http: # separate codegen endpoint for the time being
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: codegen
+                port:
+                  number: 80
