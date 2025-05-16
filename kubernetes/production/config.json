@@ -11,7 +11,7 @@
   "loaderAssetsBucket": "aokiapp-plasmic-loader-assets",
   "socketPort": 3020,
   "wabDbName": "wab",
-  "disableBwrap": false,
+  "disableBwrap": true,
   "superUserEmails": [
     "root@aoki.app",
     "me@aoki.app"

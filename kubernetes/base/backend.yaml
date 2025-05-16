@@ -16,6 +16,10 @@ spec:
     spec:
       imagePullSecrets:
         - name: github-registry-secret
+      hostAliases:
+        - ip: "10.0.1.4"
+          hostnames:
+            - "plasmic-codegen.ouchiserver.aokiapp.com"
       initContainers:
         - name: db-init
           image: ghcr.io/aokiapp/plasmic-k8s/backend:latest
