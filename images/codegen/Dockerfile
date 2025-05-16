@@ -15,7 +15,7 @@ USER node
 RUN bash -eux <<'EOF'
   for i in ./*; do
     cd $i
-    yarn install --production=false
+    yarn install --production=false --ignore-scripts --prefer-offline
     cd ..
   done
 EOF
